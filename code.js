@@ -31,10 +31,10 @@ figma.ui.onmessage = (text) => __awaiter(this, void 0, void 0, function* () {
         nodeByName[_a = relation.from] || (nodeByName[_a] = fromNode);
         const toNode = nodeByName[relation.to] || figma.createShapeWithText();
         toNode.text.characters = relation.to;
-        fromNode.text.fontSize = 24;
+        toNode.text.fontSize = 24;
         toNode.shapeType = 'SQUARE';
-        toNode.x = fromNode.x - 200 * i;
-        toNode.y = fromNode.y - 200 * i;
+        toNode.x = fromNode.x - 200 * (i + 1);
+        toNode.y = fromNode.y - 200 * (i + 1);
         nodeByName[_b = relation.to] || (nodeByName[_b] = toNode);
         const connector = figma.createConnector();
         connector.connectorStart = {

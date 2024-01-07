@@ -25,10 +25,10 @@ figma.ui.onmessage = async(text: string) => {
 
     const toNode = nodeByName[relation.to] || figma.createShapeWithText();
     toNode.text.characters = relation.to;
-    fromNode.text.fontSize = 24;
+    toNode.text.fontSize = 24;
     toNode.shapeType = 'SQUARE';
-    toNode.x = fromNode.x - 200 * i;
-    toNode.y = fromNode.y - 200 * i;
+    toNode.x = fromNode.x - 200 * (i + 1);
+    toNode.y = fromNode.y - 200 * (i + 1);
     nodeByName[relation.to] ||= toNode;
 
     const connector = figma.createConnector();
