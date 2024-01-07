@@ -1,13 +1,18 @@
 figma.showUI(__html__)
 
-figma.ui.onmessage = async(text: string) => {
+figma.ui.onmessage = async({diagramCode, filterName}) => {
   await Promise.all([
     figma.loadFontAsync({ family: "Inter", style: "Regular" }),
     figma.loadFontAsync({ family: "Inter", style: "Medium" }),
   ]);
 
-  const relations = await parseErd(text);
-  const sortedRelations = sortRelations(relations);
+  const relations = await parseErd(diagramCode);
+  const filteredRelations = relations.filter(
+    relation => filterName === ""
+    || relation.from === filterName
+    || relation.to === filterName
+  );
+  const sortedRelations = sortRelations(filteredRelations);
   const nodeByName = {} as { [key: string]: ShapeWithTextNode };
   const [startX, startY] = [
     figma.viewport.center.x,

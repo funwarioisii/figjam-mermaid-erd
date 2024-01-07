@@ -1,12 +1,30 @@
 <link rel="stylesheet" href="https://static.figma.com/api/figma-extension-api-0.0.1.css">
 
-<p><button>Paint</button></p>
-<textarea id="textbox" rows="10" cols="33"></textarea>
+<div style="display: flex; flex-flow: row; gap: 0.5rem; padding-bottom: 0.5rem;">
+    <button>Paint</button>
+    <button>Clear</button>
+</div>
+
+<input
+    id="filter-name"
+    type="text"
+    placeholder="Filter by name(ex: 'User')"
+    style="width: 100%; padding: 0.5rem; margin-bottom: 0.5rem;">
+</input>
+
+<textarea
+    id="textbox"
+    rows="10"
+    style="width: 100%; padding: 0.5rem; margin-bottom: 0.5rem;">
+</textarea>
+
 <b id="errors"></b>
+
 <script>
   document.querySelector('button').onclick = async () => {
-    const t = document.querySelector('#textbox').value;
-    parent.postMessage({ pluginMessage: t }, '*');
+    const diagramCode = document.querySelector('#textbox').value;
+    const filterName = document.querySelector('#filter-name').value;
+    parent.postMessage({ pluginMessage: { diagramCode, filterName } }, '*');
   }
 
   const showError = (errorMessage) => {

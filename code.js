@@ -8,13 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 figma.showUI(__html__);
-figma.ui.onmessage = (text) => __awaiter(this, void 0, void 0, function* () {
+figma.ui.onmessage = ({ diagramCode, filterName }) => __awaiter(this, void 0, void 0, function* () {
     yield Promise.all([
         figma.loadFontAsync({ family: "Inter", style: "Regular" }),
         figma.loadFontAsync({ family: "Inter", style: "Medium" }),
     ]);
-    const relations = yield parseErd(text);
-    const sortedRelations = sortRelations(relations);
+    const relations = yield parseErd(diagramCode);
+    const filteredRelations = relations.filter(relation => filterName === ""
+        || relation.from === filterName
+        || relation.to === filterName);
+    const sortedRelations = sortRelations(filteredRelations);
     const nodeByName = {};
     const [startX, startY] = [
         figma.viewport.center.x,
