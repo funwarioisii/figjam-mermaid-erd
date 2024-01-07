@@ -1,0 +1,22 @@
+{
+  "name": "paint-mermaid-erd",
+  "version": "1.0.0",
+  "description": "FIGJAM WIDGET: Paint rects on Figjam from a mermaid ER-diagram",
+  "scripts": {
+    "check": "for i in */tsconfig.json; do echo $i; (cd $(dirname $i) && tsc); done",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/funwarioisii/figjam-mermaid-erd.git"
+  },
+  "author": "funwarioisii",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/funwarioisii/figjam-mermaid-erd/issues"
+  },
+  "homepage": "https://github.com/funwarioisii/figjam-mermaid-erd",
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.34.1"
+  }
+}

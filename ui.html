@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="https://static.figma.com/api/figma-extension-api-0.0.1.css">
+
+<p><button>Paint</button></p>
+<textarea id="textbox" rows="10" cols="33"></textarea>
+<b id="errors"></b>
+<script>
+  document.querySelector('button').onclick = async () => {
+    const t = document.querySelector('#textbox').value;
+    parent.postMessage({ pluginMessage: t }, '*');
+  }
+
+  const showError = (errorMessage) => {
+    document.querySelector('#errors').textContent = errorMessage;
+  }
+</script>
